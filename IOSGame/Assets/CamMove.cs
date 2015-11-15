@@ -3,12 +3,19 @@ using System.Collections;
 
 public class CamMove : MonoBehaviour
 {
-    Vector3 DesiredPosition = new Vector3(0, 0, -10);
+    private Camera MyCamera = null;
+
+    Vector3 DesiredPosition = new Vector3(0, 0, -1);
 
     Vector2 MinRanges = new Vector2(-10, -10);
     Vector2 MaxRanges = new Vector2(10, 10);
 
     Vector3 Velocity = Vector3.zero;
+
+    private void Awake()
+    {
+        MyCamera = GetComponent<Camera>();
+    }
 
     private void Update()
     {
@@ -23,6 +30,7 @@ public class CamMove : MonoBehaviour
                 CheckTouch(Pos);
             }
         }
+
         if (Input.touchCount > 1)
         {
             if (Input.touchCount == 2)
@@ -38,8 +46,8 @@ public class CamMove : MonoBehaviour
 
                 float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
 
-                DesiredPosition.z -= deltaMagnitudeDiff * 0.01f;
-                DesiredPosition.z = Mathf.Clamp(DesiredPosition.z, -10, -2);
+                MyCamera.orthographicSize += deltaMagnitudeDiff * 0.01f;
+                MyCamera.orthographicSize = Mathf.Clamp(MyCamera.orthographicSize, 2, 10);
             }
         }
         else if (Input.touchCount > 0)
