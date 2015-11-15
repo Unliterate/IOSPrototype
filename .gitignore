@@ -16,9 +16,9 @@
 
 # Ignore project files in the root
 /*.sln
-/*.xcodeproj
 /*/*.sln
-/*/*.xcodeproj
+/*.csproj
+/*/*.csproj
 
 # Ignore local user Visual Studio files in any folder
 *.suo
