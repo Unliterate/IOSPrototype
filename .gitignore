@@ -30,3 +30,6 @@
 *.dll
 *.obj
 *.pdb
+
+/IOSGame/Build/*
+/IOSGame/Library/*
