@@ -30,8 +30,6 @@ public class Tile : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log(name);
-        TileType = ETileType.TT_Green;
-        GetComponent<Renderer>().material = GreenMat;
+
     }
 }

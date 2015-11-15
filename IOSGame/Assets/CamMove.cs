@@ -5,7 +5,7 @@ public class CamMove : MonoBehaviour
 {
     private Camera MyCamera = null;
 
-    Vector3 DesiredPosition = new Vector3(0, 0, -1);
+    Vector3 DesiredPosition = new Vector3(0, 0, -5);
 
     Vector2 MinRanges = new Vector2(-10, -10);
     Vector2 MaxRanges = new Vector2(10, 10);
@@ -75,10 +75,10 @@ public class CamMove : MonoBehaviour
         Collider2D Hit = Physics2D.OverlapPoint(TouchPos);
         if(Hit != null)
         {
-            Tile T = Hit.GetComponent<Tile>();
+            InteractiveObject T = Hit.GetComponent<InteractiveObject>();
             if(T != null)
             {
-                T.Interact();
+                T.OnInteract();
             }
         }
     }
