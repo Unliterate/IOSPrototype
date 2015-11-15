@@ -12,6 +12,17 @@ public class CamMove : MonoBehaviour
 
     private void Update()
     {
+        if(Input.touchCount > 0)
+        {
+            if(Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                //TODO - Why is the height being added?
+                Vector2 Pos = Input.GetTouch(0).position;
+                Pos.y -= Screen.height;
+
+                CheckTouch(Pos);
+            }
+        }
         if (Input.touchCount > 1)
         {
             if (Input.touchCount == 2)
@@ -44,5 +55,23 @@ public class CamMove : MonoBehaviour
         }
 
         transform.position = Vector3.SmoothDamp(transform.position, DesiredPosition, ref Velocity, 0.1f);
+    }
+
+    private void CheckTouch(Vector3 Position)
+    {
+        Camera C = GetComponent<Camera>();
+        Vector2 TouchPos = C.ScreenToWorldPoint(new Vector3(Position.x, Position.y, C.nearClipPlane));
+
+        print(TouchPos);
+
+        Collider2D Hit = Physics2D.OverlapPoint(TouchPos);
+        if(Hit != null)
+        {
+            Tile T = Hit.GetComponent<Tile>();
+            if(T != null)
+            {
+                T.Interact();
+            }
+        }
     }
 }
