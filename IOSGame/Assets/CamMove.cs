@@ -70,7 +70,7 @@ public class CamMove : MonoBehaviour
         Camera C = GetComponent<Camera>();
         Vector2 TouchPos = C.ScreenToWorldPoint(new Vector3(Position.x, Position.y, C.nearClipPlane));
 
-        print(TouchPos);
+        
 
         Collider2D Hit = Physics2D.OverlapPoint(TouchPos);
         if(Hit != null)
