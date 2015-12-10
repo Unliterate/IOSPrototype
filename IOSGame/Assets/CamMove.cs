@@ -23,7 +23,7 @@ public class CamMove : MonoBehaviour
         {
             if(Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                //TODO - Why is the height being added?
+                //TODO - Why is the height being added???
                 Vector2 Pos = Input.GetTouch(0).position; 
 				
                 Pos.y -= Screen.height;
